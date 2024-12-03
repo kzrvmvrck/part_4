@@ -140,7 +140,7 @@ for(let key in salaries){
 
 alert(sum);*/
 
-let menu = {
+/*let menu = {
     width : 200,
     height : 300,
     title : "My menu",
@@ -159,3 +159,144 @@ miltiplyNumeris(menu);
 for ( let key in menu) {
     alert(menu[key]);
 }
+
+
+// Методы объекта this
+
+let user = {
+    name : "Jack",
+    age : 30,
+
+    sayHi() {
+        alert(`Hello ${user.name}!`);// Так лучше не делать, так как объект может быть скопирован в другую переменную
+    }                                   // что приведет к не предсказуемым последствиям. Для того чтобы избежать этого
+}                                       // необходимо делать приставку this. Тогда конкретно понятно, что мы обращаемся
+                                        // к конкретному объекту.
+user.sayHi();
+
+
+let user2 = {
+    name : "Jack",
+    age : 30,
+
+    sayHi() {
+        alert(`Hello ${this.name}`);
+    }
+}
+
+user2.sayHi();
+
+
+
+/!*
+let xUser = user;
+user = null;
+xUser.sayHi(); // Вернет ошибку
+*!/
+
+let yUser = user2;
+user2 = null;
+yUser.sayHi();  // А вот так все работает, так как мы в переменную yUser скопировали user2. Избегая тем самым? того
+                // при изменении user2, мы не меняем yUser
+
+
+// При помощи слова this в любой функции, мы можем обратиться к любому свойству любого объекта и выполнить ее
+
+let randomObject = {
+    cargo : "Coca-Cola",
+    master : "Santa",
+    car : "Deer",
+    age : "Infinity",
+}
+
+function sayHelloToSanta() {
+    alert(this.master);
+}
+
+function getCargo() {
+    alert(this.cargo);
+}
+
+
+randomObject.sayHello = sayHelloToSanta;
+randomObject.getCargo = getCargo;
+
+randomObject.getCargo();
+randomObject.sayHello();
+
+
+// Задания
+
+
+let calculator = {
+
+    read() {
+        this.a = +prompt('a?', 0);
+        this.b = +prompt('b?', 0);
+    },
+
+    sum(Object) {
+        return this.a + this.b;
+
+    },
+
+    mul(Object) {
+        return this.a * this.b;
+    },
+}*/
+
+let ladder = {
+    step : 0,
+    up() {
+        this.step ++;   // что-то делает со свойством (+1)
+        return this;    // this возвращает сам объект, а не конкретное свойство объекта (this.step)
+    },
+
+    down() {
+        this.step --;
+        return this;
+    },
+
+    showStep: function() {
+        alert( this.step );
+        return this;
+    }
+}
+
+ladder.up().up().down().showStep().down().showStep();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
