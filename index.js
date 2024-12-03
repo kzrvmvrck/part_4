@@ -244,6 +244,7 @@ let calculator = {
         return this.a * this.b;
     },
 }*/
+/*
 
 let ladder = {
     step : 0,
@@ -266,14 +267,62 @@ let ladder = {
 ladder.up().up().down().showStep().down().showStep();
 
 
+// В прошлый раз мы создали ОБЪЕТ, тут же мы создаем функцию-конструктор
+function Calculator() {
+
+    this.read = function () {
+        this.a = +prompt("a", 0);
+        this.b = +prompt("b", 0);
+    };
+
+    this.sum = function () {
+        return this.a + this.b;
+    };
+
+    this.mul = function () {
+        return this.a * this.b;
+    };
+
+}
+
+let calculator = new Calculator();
+
+*/
+
+function Accumulator(startingValue) {
+    this.value = startingValue;
+
+    this.read = function () {
+        this.newNumber = +prompt("Enter number", 0);
+        this.value += this.newNumber;
+        return this;
+    }
+}
+
+let accum = new Accumulator(1);
+
+accum.read();
+accum.read();
+
+alert(accum.value);
 
 
+// Решение
 
+function Accum(start) {
+    this.start = start;
 
+    this.read = function () {
+        this.start += +prompt("Enter value: ", 0)
+    };
+}
 
+let accum2 = new Accum(1);
 
+accum2.read();
+accum2.read();
 
-
+alert(accum2.value);
 
 
 
